@@ -18,8 +18,10 @@ s3 = boto3.client('s3')
 
 # Replace with your bucket and prefix (path)
 BUCKET_NAME = "patent-research-assistant-mv"
-FILE_KEY = "uspto/fulltext-unzipped/2023/ipg230103/ipg230103.xml"
-DTD_FILE_PATH = "/Users/nithinkeshav/Desktop/Patent-Research-Assistant/us-patent-grant-v47-2022-02-17.dtd"
+#FILE_KEY = "uspto/fulltext-unzipped/2023/ipg230103/ipg230103.xml"\
+FILE_KEY = "C:/Users/SUJATA/Downloads/utility-patents/document_986.xml"
+
+DTD_FILE_PATH = "us-patent-grant-v45-2014-04-03.dtd"
 
 def split_xml_content(xml_content, root_tag="us-patent-grant"):
     """Splits a concatenated XML file into individual documents based on a specific root tag."""

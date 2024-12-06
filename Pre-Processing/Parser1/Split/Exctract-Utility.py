@@ -33,8 +33,8 @@ def extract_utility_patents(input_dir, output_dir):
             print(f"Error processing {file_name}: {e}")
 
 # Paths
-input_dir = "/Users/nithinkeshav/Downloads/xml_split_output"  # Directory with split XML files
-output_dir = "/Users/nithinkeshav/Downloads/utility_patents"  # Directory to save Utility Patents
+input_dir = "C:/Users/SUJATA/Downloads/xml_split_output"  # Directory with split XML files
+output_dir = "C:/Users/SUJATA/Downloads/utility_patents"  # Directory to save Utility Patents
 
 # Extract Utility Patents
 extract_utility_patents(input_dir, output_dir)
