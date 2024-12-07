@@ -1,54 +1,3 @@
-import pandas as pd
-
-# Path to the Parquet file
-parquet_file_path = "/Users/nithinkeshav/Downloads/PRA/utility_patents.parquet"
-
-# Load the Parquet file into a Pandas DataFrame
-try:
-    df = pd.read_parquet(parquet_file_path)
-
-    # Display basic information about the DataFrame
-    print("Parquet File Loaded Successfully!")
-    print("Number of Records:", len(df))
-    print("Columns:", df.columns.tolist())
-
-    # Display a sample of the data
-    print("\nSample Data:")
-    print(df.head())
-
-    # Optional: Display specific columns if needed
-    print("\nSample Titles and Patent Numbers:")
-    print(df[["title", "patent_number"]].head())
-
-<<<<<<< HEAD
-# import xml.etree.ElementTree as ET
-
-# # Load and parse the XML file
-# tree = ET.parse('/Users/nithinkeshav/Downloads/utility_patents/document_737.xml')
-# root = tree.getroot()
-
-# # Namespace handling if needed
-# namespace = {'ns': 'http://www.wipo.int/xml/ns/ipcr'}
-
-# # Extract citations
-# citations = root.findall('.//us-citation')
-# print(f"Found {len(citations)} citations.")
-
-# # Process each citation
-# for idx, citation in enumerate(citations, start=1):
-#     doc_number = citation.find('./patcit/document-id/doc-number')
-#     kind = citation.find('./patcit/document-id/kind')
-#     name = citation.find('./patcit/document-id/name')
-#     date = citation.find('./patcit/document-id/date')
-
-#     print(f"Citation {idx}:")
-#     print(f"  Doc Number: {doc_number.text if doc_number is not None else 'N/A'}")
-#     print(f"  Kind: {kind.text if kind is not None else 'N/A'}")
-#     print(f"  Name: {name.text if name is not None else 'N/A'}")
-#     print(f"  Date: {date.text if date is not None else 'N/A'}")
-#     print("-" * 30)
-
-
 import os
 import xml.etree.ElementTree as ET
 
@@ -130,7 +79,7 @@ def extract_relevant_fields(file_path):
         return {"file_name": os.path.basename(file_path), "error": str(e)}
 
 # Test with a single file
-test_file = "C:/Users/SUJATA/Downloads/utility_patents/document_986.xml"  # Update with your file path
+test_file = "/Users/nithinkeshav/Downloads/utility_patents/document_737.xml"  # Update with your file path
 
 # Extract data from the test file
 extracted_data = extract_relevant_fields(test_file)
@@ -144,7 +93,3 @@ for key, value in extracted_data.items():
             print(f"  {item}")
     else:
         print(f"{key}: {value}")
-=======
-except Exception as e:
-    print(f"Error reading the Parquet file: {e}")
->>>>>>> 67a772d7ab8639869b23d9e275f4eaf335995171
