@@ -1,5 +1,4 @@
 import os
-import pandas as pd
 import xml.etree.ElementTree as ET
 
 def extract_relevant_fields(file_path):
@@ -79,37 +78,18 @@ def extract_relevant_fields(file_path):
         print(f"Error parsing {file_path}: {e}")
         return {"file_name": os.path.basename(file_path), "error": str(e)}
 
-def process_all_files_in_folder(input_dir, output_file):
-    """
-    Process all XML files in a folder and save the extracted data to a Parquet file.
-    """
-    extracted_data = []
-    total_files = 0
-    skipped_files = 0
+# Test with a single file
+test_file = "/Users/nithinkeshav/Downloads/utility_patents/document_737.xml"  # Update with your file path
 
-    # Iterate through all XML files in the directory
-    for file_name in os.listdir(input_dir):
-        if file_name.endswith(".xml"):
-            total_files += 1
-            file_path = os.path.join(input_dir, file_name)
-            print(f"Processing: {file_name}")
-            data = extract_relevant_fields(file_path)
-            if "error" in data:
-                skipped_files += 1
-            else:
-                extracted_data.append(data)
+# Extract data from the test file
+extracted_data = extract_relevant_fields(test_file)
 
-    # Convert the data to a DataFrame
-    df = pd.DataFrame(extracted_data)
-
-    # Save to Parquet
-    df.to_parquet(output_file, index=False)
-    print(f"Data saved to Parquet file: {output_file}")
-    print(f"Processed {total_files} files, skipped {skipped_files} due to errors.")
-
-# Define paths
-input_directory = "/Users/nithinkeshav/Downloads/utility_patents"  # Path to your folder with XML files
-output_parquet_file = "/Users/nithinkeshav/Downloads/PRA/utility_patents.parquet"  # Output file path
-
-# Process all files in the folder
-process_all_files_in_folder(input_directory, output_parquet_file)
+# Print the extracted data
+print("Extracted Data:")
+for key, value in extracted_data.items():
+    if isinstance(value, list):  # For lists, print items
+        print(f"{key}:")
+        for item in value:
+            print(f"  {item}")
+    else:
+        print(f"{key}: {value}")
