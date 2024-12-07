@@ -144,7 +144,7 @@ for key, value in extracted_data.items():
             print(f"  {item}")
     else:
         print(f"{key}: {value}")
-=======
 except Exception as e:
-    print(f"Error reading the Parquet file: {e}")
->>>>>>> 67a772d7ab8639869b23d9e275f4eaf335995171
+print(f"Error reading the Parquet file: {e}")
+print("Please ensure the file format is correct.")
+>>>>>>> 67a772d7ab8639869b23d9e275f4eaf335995171issue here
