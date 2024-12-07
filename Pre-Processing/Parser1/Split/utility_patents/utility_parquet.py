@@ -10,7 +10,7 @@ def extract_relevant_fields(file_path):
         tree = ET.parse(file_path)
         root = tree.getroot()
         
-        # Extract fields with updated paths
+        # Extracting fields 
         data = {
             "file_name": os.path.basename(file_path),
             "file_size": os.path.getsize(file_path),
@@ -37,7 +37,7 @@ def extract_relevant_fields(file_path):
             ],
         }
 
-        # Extract patent citations
+        # Extracting patent citations
         patent_citations = [
             {
                 "type": "patent",
@@ -45,24 +45,24 @@ def extract_relevant_fields(file_path):
                 "kind": patcit.findtext("./document-id/kind", "N/A").strip(),
                 "name": patcit.findtext("./document-id/name", "N/A").strip(),
                 "date": patcit.findtext("./document-id/date", "N/A").strip(),
-                "category": citation.attrib.get("category", "N/A")  # Optional field for categories
+                "category": citation.attrib.get("category", "N/A")  
             }
             for citation in root.findall(".//us-references-cited/us-citation")
-            if (patcit := citation.find("patcit")) is not None  # Ensure patcit exists
+            if (patcit := citation.find("patcit")) is not None  
         ]
 
-        # Extract non-patent citations
+        # Extracting non-patent citations
         non_patent_citations = [
             {
                 "type": "non-patent",
                 "text": nplcit.findtext("./othercit", "N/A").strip(),
-                "category": nplcit.attrib.get("category", "N/A")  # Optional field for categories
+                "category": nplcit.attrib.get("category", "N/A")  
             }
             for citation in root.findall(".//us-references-cited/us-citation")
-            if (nplcit := citation.find("nplcit")) is not None  # Ensure nplcit exists
+            if (nplcit := citation.find("nplcit")) is not None  
         ]
 
-        # Combine citations
+        # Combining citations
         data["citations"].extend(patent_citations)
         data["citations"].extend(non_patent_citations)
 
@@ -70,7 +70,7 @@ def extract_relevant_fields(file_path):
         print(f"Patent Citations: {len(patent_citations)}")
         print(f"Non-Patent Citations: {len(non_patent_citations)}")
 
-        # Validate critical fields
+        # Validating the critical fields
         if data["title"] == "N/A" or data["patent_number"] == "N/A":
             print(f"Warning: Missing critical data in {file_path}")
         return data
@@ -87,7 +87,7 @@ def process_all_files_in_folder(input_dir, output_file):
     total_files = 0
     skipped_files = 0
 
-    # Iterate through all XML files in the directory
+    # Iterating through all XML files in the directory
     for file_name in os.listdir(input_dir):
         if file_name.endswith(".xml"):
             total_files += 1
@@ -99,17 +99,16 @@ def process_all_files_in_folder(input_dir, output_file):
             else:
                 extracted_data.append(data)
 
-    # Convert the data to a DataFrame
+    # Converting the data to a DataFrame
     df = pd.DataFrame(extracted_data)
 
-    # Save to Parquet
+    # Saving to Parquet
     df.to_parquet(output_file, index=False)
     print(f"Data saved to Parquet file: {output_file}")
     print(f"Processed {total_files} files, skipped {skipped_files} due to errors.")
 
-# Define paths
-input_directory = "/Users/nithinkeshav/Downloads/utility_patents"  # Path to your folder with XML files
-output_parquet_file = "/Users/nithinkeshav/Downloads/PRA/utility_patents.parquet"  # Output file path
+input_directory = "/Users/nandana_hemanth/Documents/Semester II/DATA 236/Project/Data/utility_patents"  
+output_parquet_file = "/Users/nandana_hemanth/Documents/Semester II/DATA 236/Project/Data/utility_patents.parquet"  
 
 # Process all files in the folder
 process_all_files_in_folder(input_directory, output_parquet_file)
