@@ -161,7 +161,7 @@ def extract_relevant_fields(file_path):
         return {"file_name": os.path.basename(file_path), "error": str(e)}
 
 # Test with a single file
-test_file = "/Users/nithinkeshav/Downloads/utility_patents/document_737.xml"  # Update with your file path
+test_file = "C:/Users/SUJATA/Downloads/utility_patents/document_986.xml"  # Update with your file path
 
 # Extract data from the test file
 extracted_data = extract_relevant_fields(test_file)
