@@ -109,7 +109,7 @@ def process_all_files_in_folder(input_dir, output_file):
 
 # Define paths
 input_directory = "/Users/nithinkeshav/Downloads/utility_patents"  # Path to your folder with XML files
-output_parquet_file = "/Users/nithinkeshav/Downloads/PRA/utility_patents.parquet"  # Output file path
+output_parquet_file = "/Users/nithinkeshav/Downloads/PRA/utility_patents_new.parquet"  # Output file path
 
 # Process all files in the folder
 process_all_files_in_folder(input_directory, output_parquet_file)
