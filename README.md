@@ -1,132 +1,107 @@
-# Patent-Research-Assistant
-RAG x LLM
-Patent Research Assistant
-Overview
-The Patent Research Assistant is a comprehensive full-stack application that leverages Retrieval-Augmented Generation (RAG) to make patent research more accessible and efficient. The system combines advanced Natural Language Processing techniques, domain-specific Large Language Models (LLMs), and a scalable vector database to enable efficient retrieval, analysis, and contextual understanding of patent data.
-Features
+# Patent-Research-Assistant  
+**RAG × LLM | AI-Powered Patent Search**
 
-Natural language patent search interface
-Voice recognition for queries
-Dark/light theme support
-Responsive design
-User authentication system
-Advanced patent data retrieval using RAG
-Vector-based similarity search
-Real-time patent analysis
+A full-stack application that simplifies and enhances patent research using Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), and vector search — all wrapped in a user-friendly, cloud-hosted chatbot interface.
 
-Technology Stack
+## Overview  
+The **Patent Research Assistant** is an intelligent, scalable tool that streamlines patent exploration. It integrates advanced NLP, domain-specific LLMs, and a vector database to retrieve, analyze, and contextualize patent data using natural language queries.
 
-Frontend: HTML, CSS, JavaScript, Bootstrap
-Backend: Python, AWS Lambda
-Database: AWS OpenSearch
-AI/ML:
+## Features  
+- Natural language patent search interface  
+- Voice recognition for patent queries  
+- Light/Dark theme support  
+- Responsive design for all devices  
+- User authentication system  
+- Real-time analysis with RAG + vector embeddings  
+- Semantic similarity search with vector databases  
+- Relevance-scored patent results
 
-PatentSBERTa for embeddings
-Falcon 7B for text generation
-RAG implementation using LangChain
+## Technology Stack  
+**Frontend:** HTML, CSS, JavaScript, Bootstrap for responsive design  
+**Backend:** Python, AWS Lambda (Serverless)  
+**AI/ML:** PatentSBERTa for embeddings, Falcon-7B for text generation, RAG implementation with LangChain  
+**Cloud Services (AWS):** S3 – Static hosting, Lambda – Backend logic, API Gateway – REST endpoints, OpenSearch – Vector search & retrieval, CloudWatch – Monitoring & logging
 
-
-Cloud Services:
-
-AWS S3 for static hosting
-AWS Lambda for serverless computing
-AWS API Gateway
-AWS OpenSearch for vector search
-AWS CloudWatch for monitoring
-
-
-
-Project Structure
-Copyproject/
+## Project Structure  
+```
+project/
 ├── frontend/
 │   ├── index.html          # Main landing page
-│   ├── signup.html         # User registration page
-│   ├── app.js             # Frontend JavaScript
-│   └── styles/            # CSS stylesheets
+│   ├── signup.html         # User registration
+│   ├── app.js              # Frontend logic
+│   └── styles/             # CSS styles
 ├── backend/
 │   ├── lambda_function.py  # AWS Lambda handler
 │   └── requirements.txt    # Python dependencies
 └── data_processing/
-    ├── XMLSplitter.py     # XML processing
-    ├── utility_parquet.py # Data transformation
-    └── embeddings.py      # Vector embedding generation
-Setup and Installation
-Prerequisites
+    ├── XMLSplitter.py      # XML file parsing
+    ├── utility_parquet.py  # Data transformation
+    └── embeddings.py       # Embedding generation
+```
 
-AWS Account with appropriate permissions
-Python 3.8 or higher
-Node.js and npm (for development)
-AWS CLI configured
+## Setup & Installation  
+**Prerequisites:**  
+- AWS account with necessary permissions  
+- Python 3.8+  
+- Node.js and npm  
+- AWS CLI configured  
 
-Frontend Setup
+**Frontend Setup:**  
+```bash
+# Clone the repo
+git clone https://github.com/your-username/Patent-Research-Assistant.git
+cd Patent-Research-Assistant/frontend
 
-Clone the repository
-Navigate to the frontend directory
-Configure the API endpoint in app.js
-Deploy to S3:
+# Configure API endpoints in app.js
 
-bashCopyaws s3 sync . s3://your-bucket-name
-Backend Setup
+# Deploy to S3
+aws s3 sync . s3://your-bucket-name
+```
 
-Create a new Lambda function
-Install dependencies:
+**Backend Setup:**  
+```bash
+# Navigate to backend
+cd ../backend
 
-bashCopypip install -r requirements.txt
+# Install dependencies
+pip install -r requirements.txt
 
-Configure environment variables:
+# Set environment variables
+export OPENSEARCH_ENDPOINT=your-opensearch-endpoint
+export REGION=your-region
 
-CopyOPENSEARCH_ENDPOINT=your-opensearch-endpoint
-REGION=your-aws-region
+# Deploy Lambda via AWS Console or CLI
+```
 
-Deploy the Lambda function
-Set up API Gateway integration
+**OpenSearch Setup:**  
+- Create a new OpenSearch domain  
+- Configure vector index mappings  
+- Set IAM roles and security policies  
 
-OpenSearch Setup
+## Usage  
+1. Access the app via the S3 static website URL  
+2. Register or log in  
+3. Enter your patent query using voice or text  
+4. View top-ranked patent results with summaries  
+5. Toggle dark/light mode as preferred  
 
-Create an OpenSearch domain
-Configure index mappings for vector search
-Set up IAM roles and security policies
+## Data Processing Pipeline  
+1. XML patent file splitting  
+2. Utility patent extraction  
+3. Parquet transformation  
+4. Embedding generation using PatentSBERTa  
+5. OpenSearch indexing  
 
-Usage
+## Monitoring & Security  
+- Monitor logs via AWS CloudWatch  
+- Review Lambda execution metrics  
+- Secure API calls with HTTPS & authentication  
+- Update dependencies and embeddings regularly  
+- Follow AWS security best practices  
 
-Access the application through the S3 static website URL
-Create an account or login
-Use the search bar to input patent-related queries
-View patent results with relevance scoring
-Toggle between voice and text input as needed
-
-Data Processing Pipeline
-The system processes patent data through several stages:
-
-XML file splitting
-Utility patent extraction
-Data transformation to parquet format
-Vector embedding generation
-OpenSearch indexing
-
-Monitoring and Maintenance
-
-Monitor application performance via CloudWatch
-Check Lambda execution logs for errors
-Review OpenSearch metrics for query performance
-Update embeddings periodically with new patent data
-
-Security Considerations
-
-Implement proper authentication and authorization
-Use HTTPS for all API communications
-Follow AWS security best practices
-Regularly update dependencies
-Monitor for unusual access patterns
-
-Contributing
-
-Fork the repository
-Create a feature branch
-Commit your changes
-Push to the branch
-Create a Pull Request
-
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
-Team
+## Contributing  
+1. Fork the repo  
+2. Create a new feature branch  
+3. Commit your changes  
+4. Push to your fork  
+5. Submit a Pull Request  
